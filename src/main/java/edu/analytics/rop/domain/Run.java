@@ -78,6 +78,9 @@ public class Run {
         return runPenetration;
     }
 
+
+    
+
     public void setRunPenetration(double runPenetration) {
         this.runPenetration = runPenetration;
     }
