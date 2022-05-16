@@ -1,4 +1,7 @@
-package edu.analytics.rop.domain;
+package edu.analytics.rop.entities;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,7 +16,11 @@ public class Section {
     @Column(name = "section_id")
     private Long sectionId;
     @Column(name = "section_start_date")
+    @JsonFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate sectionStartDate;
+//    @Column(name = "section_diameter")
+//    private double sectionDiameter;
     @Column(name = "section_start_depth")
     private double sectionStartDepth;
     @Column(name = "section_end_depth")
@@ -30,6 +37,14 @@ public class Section {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "well_id")
     private Well well;
+
+    public Long getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(Long sectionId) {
+        this.sectionId = sectionId;
+    }
 
     public LocalDate getSectionStartDate() {
         return sectionStartDate;

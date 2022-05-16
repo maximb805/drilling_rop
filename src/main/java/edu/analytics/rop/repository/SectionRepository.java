@@ -1,6 +1,6 @@
 package edu.analytics.rop.repository;
 
-import edu.analytics.rop.domain.Section;
+import edu.analytics.rop.entities.Section;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

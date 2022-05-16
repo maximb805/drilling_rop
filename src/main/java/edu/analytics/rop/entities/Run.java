@@ -1,4 +1,7 @@
-package edu.analytics.rop.domain;
+package edu.analytics.rop.entities;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,7 +17,11 @@ public class Run {
     @Column(name = "run_num")
     private int runNum;
     @Column(name = "run_start_date")
+    @JsonFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate runStartDate;
+//    @Column(name = "run_diameter")
+//    private double runDiameter;
     @Column(name = "run_start_depth")
     private double runStartDepth;
     @Column(name = "run_end_depth")
@@ -34,12 +41,12 @@ public class Run {
     @JoinColumn(name = "section_id")
     private Section section;
 
-    public Section getSection() {
-        return section;
+    public Long getRunId() {
+        return runId;
     }
 
-    public void setSection(Section section) {
-        this.section = section;
+    public void setRunId(Long runId) {
+        this.runId = runId;
     }
 
     public int getRunNum() {
@@ -78,9 +85,6 @@ public class Run {
         return runPenetration;
     }
 
-
-    
-
     public void setRunPenetration(double runPenetration) {
         this.runPenetration = runPenetration;
     }
@@ -115,5 +119,13 @@ public class Run {
 
     public void setBit(Bit bit) {
         this.bit = bit;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
     }
 }

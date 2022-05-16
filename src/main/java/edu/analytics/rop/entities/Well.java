@@ -1,4 +1,4 @@
-package edu.analytics.rop.domain;
+package edu.analytics.rop.entities;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,6 +24,14 @@ public class Well {
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.LAZY,
             mappedBy = "well")
     private List<Section> sections;
+
+    public Long getWellId() {
+        return wellId;
+    }
+
+    public void setWellId(Long wellId) {
+        this.wellId = wellId;
+    }
 
     public String getFieldName() {
         return fieldName;
