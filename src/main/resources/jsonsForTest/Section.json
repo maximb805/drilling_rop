@@ -1,0 +1,46 @@
+{
+  "sectionStartDate": "15.08.2021",
+  "sectionStartDepth": 1280,
+  "sectionEndDepth": 2050.0,
+  "sectionPenetration": 770.0,
+  "sectionDrillingTime": 18.5,
+  "sectionROP": 41.62,
+  "runs": [
+    {
+      "runNum": 1,
+      "runStartDate": "15.08.2021",
+      "runStartDepth": 1280.0,
+      "runEndDepth": 1545.6,
+      "runPenetration": 265.6,
+      "runDrillingTime": 32.0,
+      "runROP": 8.3,
+      "runPurpose": "Drilling",
+      "bit": {
+        "bitSerial": 623523,
+        "bitShortType": "PDC",
+        "bitFullType": "HV345PDC2",
+        "IADCCode": 334,
+        "bitProducer": "BesteBit",
+        "diameter": 215.9
+      }
+    },
+    {
+      "runNum": 2,
+      "runStartDate": "17.08.2021",
+      "runStartDepth": 1545.6,
+      "runEndDepth": 2050.0,
+      "runPenetration": 504.4,
+      "runDrillingTime": 49.45,
+      "runROP": 10.2,
+      "runPurpose": "Drilling",
+      "bit": {
+        "bitSerial": 623523,
+        "bitShortType": "PDC",
+        "bitFullType": "HV345PDC2",
+        "IADCCode": 334,
+        "bitProducer": "BesteBit",
+        "diameter": 215.9
+      }
+    }
+  ]
+}

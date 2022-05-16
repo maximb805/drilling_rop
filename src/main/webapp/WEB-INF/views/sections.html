@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sections</title>
+</head>
+<!--/wells/{id}/sections-->
+<body>
+<div th:each="section : ${sections}">
+    <div th:text="|
+    Well Id: ${section.getWell().getWellId()},
+    Id: ${section.getSectionId()}
+    Start Date: ${section.getSectionStartDate()},
+    Start Depth: ${section.getSectionStartDepth()},
+    End Depth: ${section.getSectionEndDepth()},
+    Penetration: ${section.getSectionDrillingTime()},
+    Drilling Time: ${section.getSectionDrillingTime()},
+    ROP: ${section.getSectionROP()}|">...</div>
+    <a th:href="@{/wells/{wid}/sections/{sid}/runs
+    (wid=${section.getWell().getWellId()},
+    sid=${section.getSectionId()})}" th:text="Runs">runs</a>
+    <a th:href="@{/wells}" th:text="Back">On wells page</a>
+    <hr/>
+</div>
+</body>
+</html>
