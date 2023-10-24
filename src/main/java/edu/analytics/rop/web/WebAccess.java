@@ -1,7 +1,7 @@
 package edu.analytics.rop.web;
 
-import edu.analytics.rop.buiseness.WellServiceAdd;
-import edu.analytics.rop.buiseness.WellServiceGet;
+import edu.analytics.rop.services.WellServiceAdd;
+import edu.analytics.rop.services.WellServiceGet;
 import edu.analytics.rop.entities.Well;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

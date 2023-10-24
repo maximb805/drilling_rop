@@ -20,8 +20,6 @@ public class Run {
     @JsonFormat(pattern = "dd.MM.yyyy")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate runStartDate;
-//    @Column(name = "run_diameter")
-//    private double runDiameter;
     @Column(name = "run_start_depth")
     private double runStartDepth;
     @Column(name = "run_end_depth")
@@ -40,6 +38,26 @@ public class Run {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id")
     private Section section;
+
+    @Override
+    public int hashCode() {
+        return section.hashCode() + (int)runEndDepth + runNum;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+        Run run = (Run) obj;
+        if (this.hashCode() != run.hashCode())
+            return false;
+        return (section != null && section.equals(run.getSection())) &&
+                (runNum == run.getRunNum()) &&
+                (runEndDepth == run.getRunEndDepth()) &&
+                (runPurpose != null && runPurpose.equals(run.getRunPurpose()));
+    }
 
     public Long getRunId() {
         return runId;

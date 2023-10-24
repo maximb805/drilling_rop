@@ -1,4 +1,4 @@
-package edu.analytics.rop.buiseness;
+package edu.analytics.rop.services;
 
 import edu.analytics.rop.entities.Bit;
 import edu.analytics.rop.entities.Run;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -30,47 +31,40 @@ public class WellServiceAdd {
     @Transactional
     public Well addWell(List<Well> wells) {
         wells.forEach(w -> {
-            wellRepository.save(w);
+            Well well = wellRepository.findAll().stream()
+                            .filter(well1 -> well1.equals(w)).findAny().orElse(null);
+            if (well == null)
+                wellRepository.save(w);
             List<Section> sections = w.getSections();
 
             sections.forEach(s -> {
-                s.setWell(w);
-                sectionRepository.save(s);
+                s.setWell(Objects.requireNonNullElse(well, w));
+
+                Section section = sectionRepository.findAll().stream()
+                        .filter(sec -> sec.equals(s)).findAny().orElse(null);
+                if (section == null)
+                    sectionRepository.save(s);
                 List<Run> runs = s.getRuns();
 
                 runs.forEach(r -> {
-                    r.setSection(s);
+                    r.setSection(Objects.requireNonNullElse(section, s));
                     Bit bit = bitRepository.findAll().stream()
                             .filter(b -> b.equals(r.getBit())).findAny().orElse(null);
                     if (bit == null)
                         bitRepository.save(r.getBit());
                     else
                         r.setBit(bit);
-                    runRepository.save(r);
+                    Run run = runRepository.findAll().stream()
+                            .filter(r1 -> r1.equals(r)).findAny().orElse(null);
+                    if (run == null)
+                        runRepository.save(r);
                 });
             });
         });
-
-//        for (int w = 0; w < wells.size(); w++) {
-//            Well well = wells.get(w);
-//            wellRepository.save(well);
-//            List<Section> sections = well.getSections();
-//
-//            for (int s = 0; s < sections.size(); s++) {
-//                Section section = sections.get(s);
-//                section.setWell(well);
-//                sectionRepository.save(section);
-//                List<Run> runs = section.getRuns();
-//
-//                for (int r = 0; r < runs.size(); r++) {
-//                    Run run = runs.get(r);
-//                    run.setSection(section);
-//                    Bit bit = run.getBit();
-//                    bitRepository.save(bit);
-//                    runRepository.save(run);
-//                }
-//            }
-//        }
         return wells.get(wells.size()-1);
+    }
+
+    public void aaa() {
+        System.out.println("sss");
     }
 }

@@ -1,4 +1,4 @@
-{
+[{
   "fieldName": "Kovykta",
   "padName": 307,
   "wellName": 3074,
@@ -50,7 +50,8 @@
       }
     ]
   }]
-}
+}]
+
 
 
 

@@ -25,6 +25,33 @@ public class Well {
             mappedBy = "well")
     private List<Section> sections;
 
+    @Override
+    public int hashCode() {
+        int result = 0;
+        String str = fieldName + wellName;
+        str = str.replaceAll(" ", "");
+        str = str.toUpperCase();
+        char[] chArr = str.toCharArray();
+        for (char c : chArr) {
+            result += c;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+        Well well = (Well) obj;
+        if (this.hashCode() != well.hashCode())
+            return false;
+        return (fieldName != null && fieldName.equals(well.getFieldName())) &&
+                (padName != null && padName.equals(well.getPadName())) &&
+                (wellName != null && wellName.equals(well.getWellName()));
+    }
+
     public Long getWellId() {
         return wellId;
     }

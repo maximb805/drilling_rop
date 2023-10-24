@@ -19,8 +19,6 @@ public class Section {
     @JsonFormat(pattern = "dd.MM.yyyy")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate sectionStartDate;
-//    @Column(name = "section_diameter")
-//    private double sectionDiameter;
     @Column(name = "section_start_depth")
     private double sectionStartDepth;
     @Column(name = "section_end_depth")
@@ -37,6 +35,25 @@ public class Section {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "well_id")
     private Well well;
+
+    @Override
+    public int hashCode() {
+        return well.hashCode() + (int)sectionStartDepth + (int)sectionEndDepth;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+        Section section = (Section) obj;
+        if (this.hashCode() != section.hashCode())
+            return false;
+        return (well != null && well.equals(section.getWell())) &&
+                (sectionStartDepth == section.getSectionStartDepth()) &&
+                (sectionEndDepth == section.getSectionEndDepth());
+    }
 
     public Long getSectionId() {
         return sectionId;

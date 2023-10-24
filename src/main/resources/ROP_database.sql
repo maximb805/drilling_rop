@@ -19,7 +19,6 @@ CREATE TABLE da_sections (
      well_id integer not null,
      section_id SERIAL,
      section_start_date date,
---     section_diameter float not null,
      section_start_depth float not null,
      section_end_depth float not null,
      section_penetration float not null,
@@ -45,7 +44,6 @@ CREATE TABLE da_runs (
     section_id integer not null,
     run_num integer not null,
     run_start_date date not null,
---    run_diameter float not null,
     run_start_depth float not null,
     run_end_depth float not null,
     run_penetration float not null,
@@ -55,6 +53,5 @@ CREATE TABLE da_runs (
     bit_id integer not null,
     PRIMARY KEY(run_id),
     FOREIGN KEY(section_id) REFERENCES da_sections(section_id) ON DELETE RESTRICT,
---    FOREIGN KEY(run_diameter) REFERENCES da_sections(section_diameter) ON DELETE RESTRICT,
     FOREIGN KEY(bit_id) REFERENCES da_bits(bit_id) ON DELETE RESTRICT
 );

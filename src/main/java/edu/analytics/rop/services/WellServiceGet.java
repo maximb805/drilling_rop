@@ -1,4 +1,4 @@
-package edu.analytics.rop.buiseness;
+package edu.analytics.rop.services;
 
 import edu.analytics.rop.entities.Run;
 import edu.analytics.rop.entities.Section;

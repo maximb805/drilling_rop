@@ -5,7 +5,10 @@
     <title>Runs</title>
 </head>
 <body>
-    Runs of section
-    <div th:text="|id: ${runs.get(0).getRunId()}|">...</div>
+    Runs of section: <br>
+    <div th:each="run : ${runs}">
+        <div th:text="|Run number: ${run.getRunNum()}|">...</div>
+        <hr>
+    </div>
 </body>
 </html>
